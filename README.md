@@ -1,2 +1,2 @@
-# trigger_delay_rtl_ip
+# Trigger delay RTL IP
 RTL IP in VHDL for triggers delaying 
