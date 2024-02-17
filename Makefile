@@ -1,7 +1,10 @@
 QUARTUS_DIR=
 PROJECT=trigger_delay_rtl_ip
 
-all: synthesize fit assemble
+all: update_sources synthesize fit assemble
+
+update_sources:
+	@ ./update_sources.sh
 
 synthesize:
 	@ $(QUARTUS_DIR)quartus_map --read_settings_files=on --write_settings_files=off $(PROJECT) -c $(PROJECT)
