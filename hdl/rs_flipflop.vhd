@@ -17,10 +17,10 @@ begin
     process_RS_flipflop: process (clk)
     begin
         if rising_edge(clk) then
-            if set == '1' and reset == '0' then
+            if set = '1' and reset = '0' then
                 q <= '1';
                 nq <= '0';
-            elsif reset == '1' then
+            elsif reset = '1' then
                 q <= '0';
                 nq <= '1';
             end if;

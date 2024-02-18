@@ -3,12 +3,12 @@ use ieee.std_logic_1164.all ;
 
 entity comparator is
     generic (
-        DELAY_WIDTH : integer := 8
+        DATA_WIDTH : integer
     );
     port ( 
         clk : in std_logic ; 
-        a : in std_logic_vector(DELAY_WIDTH - 1 downto 0) ;
-        b : in std_logic_vector(DELAY_WIDTH - 1 downto 0) ;
+        a : in std_logic_vector(DATA_WIDTH - 1 downto 0) ;
+        b : in std_logic_vector(DATA_WIDTH - 1 downto 0) ;
         result : out std_logic 
     );
 end comparator ;
@@ -18,10 +18,10 @@ architecture LogicFunction of comparator is
     
 begin 
 
-    process_comparator: process (clk, set)
+    process_comparator: process (clk)
     begin
         if rising_edge(clk) then
-            if a == b then
+            if a = b then
                 result <= '1';
             else
                 result <= '0';
@@ -29,6 +29,6 @@ begin
         end if;
     end process process_comparator;
 
-    result <= std_logic_vector(int_result);
+    result <= std_logic(int_result);
 
 end LogicFunction ;

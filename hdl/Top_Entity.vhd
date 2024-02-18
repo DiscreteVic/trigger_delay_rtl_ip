@@ -1,44 +1,41 @@
-LIBRARY ieee ;
-USE ieee.std_logic_1164.all;
-use ieee.std_logic_arith.all;
-use ieee.std_logic_unsigned.all;
+library ieee ;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
 
-ENTITY Top_Entity IS
-    PORT ( 
-        ADC_CLK_10 : IN STD_LOGIC ;
-        MAX10_CLK1_50 : IN STD_LOGIC ;
-        ARDUINO_IO : INOUT STD_LOGIC_VECTOR(15 downto 0) ;
-        VGA_R : OUT STD_LOGIC_VECTOR(3 downto 0) ;
-        VGA_G : OUT STD_LOGIC_VECTOR(3 downto 0) ;
-        VGA_B : OUT STD_LOGIC_VECTOR(3 downto 0) ;
-        VGA_HS : OUT STD_LOGIC ;
-        VGA_VS : OUT STD_LOGIC ;
-        KEY : IN STD_LOGIC_VECTOR(1 downto 0) ;
-        LEDR : OUT STD_LOGIC_VECTOR(9 downto 0);
-        HEX0 : OUT STD_LOGIC_VECTOR(7 downto 0);
-        HEX2 : OUT STD_LOGIC_VECTOR(7 downto 0);
-        HEX1 : OUT STD_LOGIC_VECTOR(7 downto 0)) ;
-END Top_Entity ;
+entity Top_Entity is
+    port ( 
+        ADC_CLK_10 : in STD_LOGIC ;
+        MAX10_CLK1_50 : in STD_LOGIC ;
+        ARDUinO_IO : inout STD_LOGIC_VECTOR(15 downto 0) ;
+        VGA_R : out STD_LOGIC_VECTOR(3 downto 0) ;
+        VGA_G : out STD_LOGIC_VECTOR(3 downto 0) ;
+        VGA_B : out STD_LOGIC_VECTOR(3 downto 0) ;
+        VGA_HS : out STD_LOGIC ;
+        VGA_VS : out STD_LOGIC ;
+        KEY : in STD_LOGIC_VECTOR(1 downto 0) ;
+        LEDR : out STD_LOGIC_VECTOR(9 downto 0);
+        HEX0 : out STD_LOGIC_VECTOR(7 downto 0);
+        HEX2 : out STD_LOGIC_VECTOR(7 downto 0);
+        HEX1 : out STD_LOGIC_VECTOR(7 downto 0)) ;
+end Top_Entity ;
 
-ARCHITECTURE LogicFunction OF Top_Entity IS
+architecture LogicFunction of Top_Entity is
 
  
---    COMPONENT Prescaler is
---        GENERIC(
---            N : INTEGER);
---        PORT ( 
---            clk_in : IN STD_LOGIC;
---            clk_out : OUT STD_LOGIC) ;
---    END COMPONENT;
-
-    COMPONENT ledTest is
-		PORT ( 
-			testKey : IN STD_LOGIC ;
-			testLed : OUT STD_LOGIC );
-    END COMPONENT;
+    component trigger_delay is
+        generic (
+            DELAY_WIDTH : integer
+        );
+        port ( 
+            clk : in std_logic ;
+            delay : in std_logic_vector(DELAY_WIDTH - 1 downto 0) ;
+            trigger : in std_logic ;
+            trigger_delayed : out std_logic 
+        );
+    end component;
 
 
-BEGIN
-	P1: ledTest port map (KEY(1),LEDR(0));
+
+begin
  
-END LogicFunction ;
+end LogicFunction ;
